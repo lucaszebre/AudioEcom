@@ -1,46 +1,48 @@
-// import { useState } from 'react'
-import { useState } from 'react';
-import './App.css'
-import { Login } from './components/login'
-import { Button, buttonVariants } from './components/ui/button'
-import { cn } from './lib/utils'
-import { Register } from './components/register';
-
+import Home from './pages/Home'
+import Speakers from './pages/speakers'
+import Earsphones from './pages/earsphones'
+import Headphones from './pages/headPhones'
+import HeadphonesMark from './pages/headPhonesMark'
+import HeadphonesMark2 from './pages/headPhomesMark2'
+import XX59 from './pages/xx59'
+import ZX7 from './pages/zx7'
+import ZX9 from './pages/zx9'
+import YX1 from './pages/yx1'
+import Checkout from './pages/checkout'
+import { HashRouter, Routes, Route } from 'react-router-dom'
+import Auth from './components/auth'
+import {
+  QueryClient,
+  QueryClientProvider,
+} from 'react-query'
 function App() {
-  const [login, setLogin] = useState(false)
+
+  const queryClient = new QueryClient()
 
   return (
     
-    <>
     
-    <div className="container relative  h-screen flex-col items-center justify-center md:grid  lg:grid-cols-2 lg:px-0">
-      <Button variant={'ghost'}
-        onClick={()=>{setLogin(prevLogin => !prevLogin)}}
-        className={cn(
-          buttonVariants({ variant: "ghost" }),
-          "absolute right-4 top-4 md:right-8 md:top-8"
-        )}
-      >
-        {login && 'Register' ||'Login'}
-      </Button>
-      <div className="relative  h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex hidden">
-        <div className="absolute inset-0 bg-zinc-900 "  />
-        <div className="relative z-20 flex items-center text-lg font-medium">
-          <img src="/assets/shared/desktop/logo.svg" alt="" />
-          
-        </div>
-        
-      </div>
-      <div className="lg:p-8">
-        <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-          
-         {login&& <Login /> || <Register />}
-          
-        </div>
-      </div>
-    </div>
-  </>
+    <QueryClientProvider client={queryClient}>
+
+    <HashRouter basename='/'>  
+      <Routes>
+        <Route  path="/" element={<Home />}/>
+        <Route  path="/auth" element={<Auth />}/>
+        <Route  path="/headphones" element={<Headphones />}/>
+        <Route  path="/speakers" element={<Speakers />}/>
+        <Route  path="/XX99MarkIHeadphones" element={<HeadphonesMark />}/>
+        <Route  path="/XX99MarkIIHeadphones" element={<HeadphonesMark2 />}/>
+        <Route  path="/XX59Headphones" element={<XX59 />}/>
+        <Route  path="/ZX7Speaker" element={<ZX7 />}/>
+        <Route  path="/ZX9Speaker" element={<ZX9 />}/>
+        <Route  path="/YX1Earphones" element={<YX1 />}/>
+        <Route  path="/earsphones" element={<Earsphones/>}/>
+        <Route path="/checkout" element={<Checkout/>}/>
+      </Routes>
+    </HashRouter> 
     
+    </QueryClientProvider>
+
   )
 }
 

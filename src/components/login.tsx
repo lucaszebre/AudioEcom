@@ -15,11 +15,14 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { SchemaLogin } from "@/types"
+import { login } from "@/utils/login"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-
+import { Icons } from "./icons"
+import { useState } from "react"
 export function Login() {
+  const [isLoading,setIsLoading] = useState(false)
   const form = useForm<z.infer<typeof SchemaLogin>>({
     resolver: zodResolver(SchemaLogin),
     defaultValues: {
@@ -27,10 +30,11 @@ export function Login() {
       
     },
   })
-  function onSubmit(values: z.infer<typeof SchemaLogin>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  async function  onSubmit(values: z.infer<typeof SchemaLogin>) {
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        await login(values.email, values.password,setIsLoading);
+        setIsLoading(isLoading)
+        console.log(values)
   }
 
   return (
@@ -72,7 +76,9 @@ export function Login() {
             </FormItem>
           )}
         />
-        <Button className="w-full">Login</Button>
+        <Button type="submit" className="w-full">{isLoading && (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            )}Login</Button>
       </form>
     </Form>
     </Card>

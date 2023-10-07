@@ -18,8 +18,13 @@ import { SchemaRegister } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
+import { Icons } from "./icons"
+import { useRegister } from "@/utils/useRegister"
+import { useState } from "react"
+
 
 export function Register() {
+    const [isLoading,setIsLoading] = useState(false)
     const form = useForm<z.infer<typeof SchemaRegister>>({
         resolver: zodResolver(SchemaRegister),
         defaultValues: {
@@ -27,9 +32,18 @@ export function Register() {
           
         },
       })
+
+
+      
       function onSubmit(values: z.infer<typeof SchemaRegister>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+    const {isLoading}=    useRegister(values.email,
+            values.password,
+            values.firstName,
+            values.lastName,
+            parseInt(values.number),
+            values.adress)
+        setIsLoading(isLoading)
         console.log(values)
       }
   return (
@@ -123,7 +137,9 @@ export function Register() {
                 </FormItem>
             )}
             />
-            <Button className="w-full">Login</Button>
+            <Button className="w-full"> {isLoading && (
+              <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+            )}Login</Button>
         </form>
         </Form>
         </Card>
