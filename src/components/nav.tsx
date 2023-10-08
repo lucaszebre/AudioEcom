@@ -7,10 +7,8 @@ import { Button } from './ui/button'
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuShortcut,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
@@ -48,7 +46,7 @@ const Nav = (props:{color?:string}) => {
                 className='CartNav' src="/assets/shared/desktop/icon-cart.svg" alt="cart" />
 
                 {
-                    <DropdownMenu>
+                    <DropdownMenu >
                     <DropdownMenuTrigger asChild>
                     <Button variant="ghost" className="relative h-8 w-8 rounded-full">
                         <Avatar className="h-8 w-8">
@@ -57,8 +55,8 @@ const Nav = (props:{color?:string}) => {
                         </Avatar>
                     </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-56" align="end" forceMount>
-                    <DropdownMenuLabel className="font-normal">
+                    <DropdownMenuContent  className="w-56 mt-4" align="end" forceMount>
+                    <DropdownMenuLabel className="font-normal cursor-pointer">
                         <div className="flex flex-col space-y-1">
                         <p className="text-sm font-medium leading-none">shadcn</p>
                         <p className="text-xs leading-none text-muted-foreground">
@@ -66,26 +64,10 @@ const Nav = (props:{color?:string}) => {
                         </p>
                         </div>
                     </DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                        Profile
-                        <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                        Billing
-                        <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                        Settings
-                        <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>New Team</DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>
+                    
+                    <DropdownMenuItem className='cursor-pointer'>
                         Log out
-                        <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                        <DropdownMenuShortcut>🚪</DropdownMenuShortcut>
                     </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>||<Button>Login</Button>}

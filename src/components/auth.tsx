@@ -5,6 +5,7 @@ import { Login } from './login'
 import { Button, buttonVariants } from './ui/button'
 import { cn } from '../lib/utils'
 import { Register } from './register';
+import { Link } from 'react-router-dom';
 
 function Auth() {
   const [login, setLogin] = useState(false)
@@ -26,7 +27,7 @@ function Auth() {
       <div className="relative  h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex hidden">
         <div className="absolute inset-0 bg-zinc-900 "  />
         <div className="relative z-20 flex items-center text-lg font-medium">
-          <img src="/assets/shared/desktop/logo.svg" alt="" />
+          <Link to='/'><img  src="/assets/shared/desktop/logo.svg" alt="" /></Link>
           
         </div>
         

@@ -15,6 +15,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
+import { Toaster } from "@/components/ui/toaster"
+
 function App() {
 
   const queryClient = new QueryClient()
@@ -23,8 +25,9 @@ function App() {
     
     
     <QueryClientProvider client={queryClient}>
-
-    <HashRouter basename='/'>  
+    <Toaster />
+    <HashRouter basename='/'> 
+     
       <Routes>
         <Route  path="/" element={<Home />}/>
         <Route  path="/auth" element={<Auth />}/>

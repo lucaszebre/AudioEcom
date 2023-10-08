@@ -19,7 +19,9 @@ const Features = ({
   text5 = '',
   text6 = '',
   text7 = '',
+  
 }: FeaturesProps) => {
+
     return (
         <div className="FeaturesContainer">
             <div className="FeaturesWrapper">

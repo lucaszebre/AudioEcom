@@ -21,19 +21,28 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Icons } from "./icons"
 import { useState } from "react"
+import { useToast } from "@/components/ui/use-toast"
+
 export function Login() {
   const [isLoading,setIsLoading] = useState(false)
   const form = useForm<z.infer<typeof SchemaLogin>>({
     resolver: zodResolver(SchemaLogin),
     defaultValues: {
       email: "",
+      password:""
       
     },
   })
+  const { toast } = useToast()
+
   async function  onSubmit(values: z.infer<typeof SchemaLogin>) {
         // eslint-disable-next-line react-hooks/rules-of-hooks
         await login(values.email, values.password,setIsLoading);
         setIsLoading(isLoading)
+        toast({
+          title: "Connect",
+        })
+      
         console.log(values)
   }
 
@@ -76,7 +85,7 @@ export function Login() {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full">{isLoading && (
+        <Button  type="submit" className="w-full">{isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}Login</Button>
       </form>
